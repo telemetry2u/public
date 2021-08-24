@@ -47,7 +47,7 @@ plot(y);
 # Plot internal humidity on same chart.
 hold on;
 idx = find(not(cellfun('isempty',strfind(fieldnames(data(:,1)), "Int. Humidity"))));
-temperature = d(idx,:);
-y = cell2mat(temperature);
+internalHumidity = d(idx,:);
+y = cell2mat(internalHumidity);
 plot(y);
 hold off;
