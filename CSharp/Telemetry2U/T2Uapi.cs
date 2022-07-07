@@ -16,7 +16,7 @@ namespace Telemetry2U
         {
             string authorization = System.Convert.ToBase64String(Encoding.GetEncoding("ISO-8859-1").GetBytes(email + ":" + apiKey));
             client = new HttpClient();
-            client.DefaultRequestHeaders.Add("Authorization", "Basic " + authorization);
+            client.DefaultRequestHeaders.Add("Authorization", "Bearer " + authorization);
         }
 
         private async Task<string> GetJson(string request)
@@ -29,6 +29,10 @@ namespace Telemetry2U
         public async Task<List<Node>> GetNodes()
         {
             var json = await GetJson("nodes");
+            if (json.Length > 0 && json[0] != '[')
+            {
+                throw new Exception(json);
+            }
             var result = JsonSerializer.Deserialize<List<Node>>(json);
             return result ?? new List<Node>();
         }
