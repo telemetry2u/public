@@ -25,5 +25,5 @@ Returns the last received record for the specified node.
 
 https://telemetry2u.com/api/data/{nodeId}/{startDate}/{endDate}
 
-Returns all data received from a node between the start and end dates that are specified in your local time zone.
+Returns all data received from a node between the start and end dates that are specified as UTC.
 They should be specified in the ANSI format YYYY-DD-MM or YYYY-DD-MM HH:MM:SS.
