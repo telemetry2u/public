@@ -18,7 +18,7 @@ def do_request(request):
     connection = HTTPSConnection("telemetry2u.com")
     # Your API key and authorization string may be generated under the Account / Api Keys section of your Telemetry2U account.
     # The following authorization details are for the demo account and may be used for experimentation.
-    authorization = "Basic ZGVtb0BleGFtcGxlLm9yZzpQOXg2ZGgrSXpZYVV1NS9mUHpjL1JZZkh3VzFuL0gyNStsMVNlYi9TY3oxUQ=="
+    authorization = "Bearer ZGVtb0BleGFtcGxlLm9yZzpQOXg2ZGgrSXpZYVV1NS9mUHpjL1JZZkh3VzFuL0gyNStsMVNlYi9TY3oxUQ=="
     headers = { "Authorization" : authorization}
     connection.request("GET", request, headers=headers)
     response = connection.getresponse()
