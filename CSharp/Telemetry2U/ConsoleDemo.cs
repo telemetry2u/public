@@ -35,7 +35,7 @@ namespace Telemetry2U
             var nodeId = nodes.Where(n => n.description == "LHT65 Fridge/Freezer Demo")
                 .Select(n => n.nodeId)
                 .Single();
-            var data = await api.GetData(nodeId, DateTime.Today.AddDays(-7), endDate: DateTime.MaxValue);
+            var data = await api.GetData(nodeId, DateTime.UtcNow.Date.AddDays(-7), endDate: DateTime.MaxValue);
 
             // If data was retrieved print the list of keys in the dictionary
             if (data.Count > 0)

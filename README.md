@@ -3,7 +3,7 @@ This repository contains the following sample code related to the [Telemetry2U](
 
 Path | Description
 ------------- | -------------
-CSharp/ | Simple Telemetry2U API sample console application using C# and .NET5
+CSharp/ | Simple Telemetry2U API sample console application using C# and .NET 6
 Octave/ | Simple Telemetry2U API sample script written using Octave / MATLAB
 Python/ | Simple Telemetry2U API sample script written using Python 3
 
