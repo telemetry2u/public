@@ -14,7 +14,7 @@ url = "https://telemetry2u.com/api/nodes";
 
 # Your API key and authorization string may be generated under the Account / Api Keys section of your Telemetry2U account.
 # The following authorization details are for the demo account and may be used for experimentation.
-authorization = "Basic ZGVtb0BleGFtcGxlLm9yZzpQOXg2ZGgrSXpZYVV1NS9mUHpjL1JZZkh3VzFuL0gyNStsMVNlYi9TY3oxUQ==";
+authorization = "Bearer ZGVtb0BleGFtcGxlLm9yZzpQOXg2ZGgrSXpZYVV1NS9mUHpjL1JZZkh3VzFuL0gyNStsMVNlYi9TY3oxUQ==";
 options = weboptions('HeaderFields',{'Authorization', authorization});
 nodes = fromJSON(webread(url, options=options));
 
@@ -26,7 +26,7 @@ nodeIndex = find(not(cellfun('isempty',strfind({nodes(:).description}, "LHT65 Fr
 nodeId = nodes(nodeIndex).nodeId;
 
 # Call api/data endpoint to retrieve data for node for past week.
-secondsPerDay = 86400
+secondsPerDay = 86400;
 startDate = strftime ("%Y-%m-%d", localtime (time () - 7 * secondsPerDay))
 endDate = "9999-12-31"; # Use large end date to retrieve most recent data
 url = sprintf("https://telemetry2u.com/api/data/%s/%s/%s", nodeId, startDate, endDate);
@@ -40,14 +40,14 @@ celldata = struct2cell(data);
 
 # Plot internal temperature.
 idx = find(not(cellfun('isempty',strfind(fieldnames(data(:,1)), "Int. Temperature"))));
-internalTemperature = d(idx,:);
+internalTemperature = celldata(idx,:);
 y = cell2mat(internalTemperature);
 plot(y);
 
 # Plot internal humidity on same chart.
 hold on;
 idx = find(not(cellfun('isempty',strfind(fieldnames(data(:,1)), "Int. Humidity"))));
-internalHumidity = d(idx,:);
+internalHumidity = celldata(idx,:);
 y = cell2mat(internalHumidity);
 plot(y);
 hold off;
